@@ -30,8 +30,9 @@ namespace ASPNetCore_CoreIdentity_user_data_issue
 			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseSqlServer(
 					Configuration.GetConnectionString("DefaultConnection")));
-			services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-				.AddEntityFrameworkStores<ApplicationDbContext>();
+			services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+				.AddEntityFrameworkStores<ApplicationDbContext>()
+				.AddDefaultUI();
 			services.AddControllersWithViews();
 			services.AddRazorPages();
 		}

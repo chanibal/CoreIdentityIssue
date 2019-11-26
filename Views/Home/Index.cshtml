@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ASPNetCore_CoreIdentity_user_data_issue.Controllers.HomeController.IndexDataModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +8,28 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<p>Custom Tag: @Model.user.CustomTag <a asp-action="ResetCustomTag">[reset]</a></p>
+
+<p>Bar:
+@if (@Model.user.Bar == null)
+{
+	<span>(none)</span>
+}
+else
+{
+	<span>@Model.user.Bar.Value</span>
+}
+	<a asp-action="IncrementBar">[increment]</a>
+</p>
+
+<p>
+	Foo:
+	<ul>
+		@foreach (var foo in @Model.foos)
+		{
+			<li>@foo.Id</li>
+		}
+	</ul>
+	<a asp-action="AddFoo">[add]</a>
+</p>
